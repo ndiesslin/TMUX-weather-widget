@@ -1,12 +1,17 @@
+// Example to run this file // units=imperial locationId=5045360 appId='14e3df96753ec1ac143f5e11dbd7a196' requestFrequency=100000 node server.js
+
 // App parameters
 var apiParams = {
-  units: 'imperial',
-  locationId: '5045360',
-  appId: '14e3df96753ec1ac143f5e11dbd7a196', // User API ID
+  units: process.env.units || 'imperial',
+  locationId: process.env.locationId || '5045360',
+  appId: process.env.appId || '14e3df96753ec1ac143f5e11dbd7a196', // User API ID
 }
 
-// Get initial weather
-getWeather();
+// Run get weather once the script starts
+setImmediate(getWeather);
+
+// Run get weather each specified amount
+setInterval(getWeather, process.env.requestFrequency || 10000);
 
 function getWeather() {
   var http = require('http');
