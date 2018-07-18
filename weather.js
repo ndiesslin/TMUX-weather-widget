@@ -11,7 +11,7 @@ var apiParams = {
 setImmediate(getWeather);
 
 // Run get weather each specified amount
-setInterval(getWeather, process.env.requestFrequency || 10000);
+setInterval(getWeather, process.env.requestFrequency || 900000);
 
 function getWeather() {
   var http = require('http');
