@@ -5,13 +5,14 @@ var apiParams = {
   units: process.env.units || 'imperial',
   locationId: process.env.locationId || '5045360',
   appId: process.env.appId || '14e3df96753ec1ac143f5e11dbd7a196', // User API ID
+  requestFrequency: process.env.requestFrequency,
 }
 
 // Run get weather once the script starts
 setImmediate(getWeather);
 
 // Run get weather each specified amount
-setInterval(getWeather, process.env.requestFrequency || 900000);
+setInterval(getWeather, apiParams.requestFrequency || 900000);
 
 function getWeather() {
   var http = require('http');
